@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>THÔNG TIN ĐĂNG KÝ</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        
+        .modal {
+            background: #fff;
+            width: 500px;
+            margin: 40px auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            padding: 24px 32px 16px 32px;
+            position: relative;
+        }
+        
+        .modal h2 {
+            margin-top: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 16px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        .error {
+            color: red;
+            font-size: 13px;
+            margin-top: 2px;
+        }
+        
+        .radio-group,
+        .checkbox-group {
+            margin-bottom: 8px;
+        }
+        
+        .actions {
+            text-align: right;
+        }
+        
+        .actions button {
+            margin-left: 8px;
+            padding: 6px 16px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 32px;
+            background: #fff;
+        }
+        
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background: #eee;
+        }
+        
+        /* Thiết lập chiều cao carousel */
+        .carousel-inner img {
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        /* Ẩn form đăng ký mặc định */
+        .modal {
+            display: none;
+        }
+        
+        .modal.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselId" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselId" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselId" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../img/anh1.jpg" class="d-block w-100" alt="First slide" />
+                    <div class="carousel-caption d-none d-md-block">
+                        
+                        
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="../img/anh2.jpg" class="d-block w-100" alt="Second slide" />
+                    <div class="carousel-caption d-none d-md-block">
+                        
+                        
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="../img/anh3.jpg" class="d-block w-100" alt="Third slide" />
+                    <div class="carousel-caption d-none d-md-block">
+                        
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselId" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselId" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="toggleRegistrationForm()">Đăng ký sinh viên</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="modal">
+        <h2>THÔNG TIN ĐĂNG KÝ</h2>
+        <form id="registerForm" autocomplete="off">
+            <div class="form-group">
+                <label for="masv">Mã SV</label>
+                <input type="text" id="masv" name="masv">
+                <div class="error" id="errMasv"></div>
+            </div>
+            <div class="form-group">
+                <label for="hoten">Họ tên</label>
+                <input type="text" id="hoten" name="hoten">
+                <div class="error" id="errHoten"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email">
+                <div class="error" id="errEmail"></div>
+            </div>
+            <div class="form-group">
+                <label>Giới tính</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gioitinh" value="Nam"> Nam</label>
+                    <label><input type="radio" name="gioitinh" value="Nữ"> Nữ</label>
+                </div>
+                <div class="error" id="errGioitinh"></div>
+            </div>
+            <div class="form-group">
+                <label>Sở thích</label>
+                <div class="checkbox-group">
+                    <label><input type="checkbox" name="sothich" value="Nội trợ"> Nội trợ</label>
+                    <label><input type="checkbox" name="sothich" value="Du lịch"> Du lịch</label>
+                    <label><input type="checkbox" name="sothich" value="Nghệ nhạc"> Nghệ nhạc</label>
+                </div>
+                <div class="error" id="errSothich"></div>
+            </div>
+            <div class="form-group">
+                <label for="nganhhoc">Ngành học</label>
+                <select id="nganhhoc" name="nganhhoc">
+                    <option value="">Select one</option>
+                    <option value="CNTT">Công nghệ thông tin</option>
+                    <option value="QTKD">Quản trị kinh doanh</option>
+                    <option value="Kế toán">Kế toán</option>
+                    <option value="Du lịch">Du lịch</option>
+                </select>
+                <div class="error" id="errNganhhoc"></div>
+            </div>
+            <div class="actions">
+                <button type="button" onclick="closeForm()">Close</button>
+                <button type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <table id="dssv">
+        <thead>
+            <tr>
+                <th>Mã SV</th>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th>Giới tính</th>
+                <th>Sở thích</th>
+                <th>Ngành học</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        function toggleRegistrationForm() {
+            var modal = document.querySelector('.modal');
+            modal.classList.toggle('show');
+        }
+        
+        function closeForm() {
+            document.getElementById('registerForm').reset();
+            document.querySelectorAll('.error').forEach(e => e.innerText = '');
+            document.querySelector('.modal').classList.remove('show');
+        }
+
+        document.getElementById('registerForm').onsubmit = function(e) {
+            e.preventDefault();
+
+            // Lấy giá trị
+            var masv = document.getElementById('masv').value.trim();
+            var hoten = document.getElementById('hoten').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var gioitinh = document.querySelector('input[name="gioitinh"]:checked');
+            var sothich = document.querySelectorAll('input[name="sothich"]:checked');
+            var nganhhoc = document.getElementById('nganhhoc').value;
+
+            // Reset lỗi
+            document.getElementById('errMasv').innerText = '';
+            document.getElementById('errHoten').innerText = '';
+            document.getElementById('errEmail').innerText = '';
+            document.getElementById('errGioitinh').innerText = '';
+            document.getElementById('errSothich').innerText = '';
+            document.getElementById('errNganhhoc').innerText = '';
+
+            var isValid = true;
+
+            // Kiểm tra Mã SV
+            var reMasv = /^[a-zA-Z]{2}\d{3}$/;
+            if (!masv) {
+                document.getElementById('errMasv').innerText = 'Vui lòng nhập mã SV';
+                isValid = false;
+            } else if (!reMasv.test(masv)) {
+                document.getElementById('errMasv').innerText = 'Mã SV phải gồm 2 chữ cái và 3 số (VD: ab123)';
+                isValid = false;
+            }
+
+            // Kiểm tra Họ tên
+            var reHoten = /^([A-Z][a-z]+)(\s[A-Z][a-z]+)+$/;
+            if (!hoten) {
+                document.getElementById('errHoten').innerText = 'Vui lòng nhập họ tên';
+                isValid = false;
+            } else if (!reHoten.test(hoten)) {
+                document.getElementById('errHoten').innerText = 'Họ tên phải có ít nhất 2 từ, mỗi từ viết hoa chữ cái đầu';
+                isValid = false;
+            }
+
+            // Kiểm tra Email
+            var reEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+            if (!email) {
+                document.getElementById('errEmail').innerText = 'Vui lòng nhập email';
+                isValid = false;
+            } else if (!reEmail.test(email)) {
+                document.getElementById('errEmail').innerText = 'Email không hợp lệ';
+                isValid = false;
+            }
+
+            // Kiểm tra Giới tính
+            if (!gioitinh) {
+                document.getElementById('errGioitinh').innerText = 'Vui lòng chọn giới tính';
+                isValid = false;
+            }
+
+            // Kiểm tra Sở thích
+            if (sothich.length === 0) {
+                document.getElementById('errSothich').innerText = 'Vui lòng chọn ít nhất 1 sở thích';
+                isValid = false;
+            }
+
+            // Kiểm tra Ngành học
+            if (!nganhhoc) {
+                document.getElementById('errNganhhoc').innerText = 'Vui lòng chọn ngành học';
+                isValid = false;
+            }
+
+            // Nếu hợp lệ, thêm vào bảng
+            if (isValid) {
+                var tb = document.getElementById('dssv').getElementsByTagName('tbody')[0];
+                var row = tb.insertRow();
+                row.insertCell(0).innerText = masv;
+                row.insertCell(1).innerText = hoten;
+                row.insertCell(2).innerText = email;
+                row.insertCell(3).innerText = gioitinh.value;
+                var arrSothich = [];
+                sothich.forEach(function(st) {
+                    arrSothich.push(st.value);
+                });
+                row.insertCell(4).innerText = arrSothich.join(', ');
+                row.insertCell(5).innerText = nganhhoc;
+
+                // Reset form
+                document.getElementById('registerForm').reset();
+                // Ẩn form sau khi đăng ký thành công
+                document.querySelector('.modal').classList.remove('show');
+            }
+        }
+    </script>
+    
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
